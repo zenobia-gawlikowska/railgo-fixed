@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Home</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<!-- legacy screen-reader fallback form (kept for compatibility, do not remove) -->
+<div class="sr-only" id="lf">
+  <h1>RailGo - book train tickets</h1>
+  <form onsubmit="return false">
+    <label>Trip type <select id="lf-trip"><option value="R">Return</option><option value="O">One-way</option></select></label>
+    <label>From <select id="lf-from"><option value="WAW">Warszawa</option><option value="KRP">Kraków</option><option value="GDA">Gdańsk</option><option value="POZ">Poznań</option><option value="WRO">Wrocław</option><option value="KTW">Katowice</option></select></label>
+    <label>To <select id="lf-to"><option value="KRP">Kraków</option><option value="WAW">Warszawa</option><option value="GDA">Gdańsk</option><option value="POZ">Poznań</option><option value="WRO">Wrocław</option><option value="KTW">Katowice</option></select></label>
+    <label>Travel date <input type="date" id="lf-date"></label>
+    <label>Departure time <select id="lf-time"><option>06:05</option><option>07:42</option><option>09:10</option><option>11:30</option><option>14:55</option><option>17:20</option></select></label>
+    <label>Adults <input type="number" id="lf-a" value="1" min="0"></label>
+    <label>Seniors <input type="number" id="lf-se" value="0" min="0"></label>
+    <label>Students <input type="number" id="lf-st" value="0" min="0"></label>
+    <label>Children <input type="number" id="lf-ch" value="0" min="0"></label>
+    <label>Carriage <input type="number" id="lf-car" value="1" min="1" max="5"></label>
+    <label>Seat numbers (comma separated) <input type="text" id="lf-seats"></label>
+    <label><input type="checkbox" id="lf-bike"> Bicycle</label>
+    <label><input type="checkbox" id="lf-meal"> Meal</label>
+    <label><input type="checkbox" id="lf-lug"> Extra luggage</label>
+    <label><input type="checkbox" id="lf-ins"> Travel insurance</label>
+    <label>Passenger name <input type="text" id="lf-name"></label>
+    <button type="button" id="lf-go">Confirm booking</button>
+  </form>
+  <p id="lf-ref">Your booking reference: RG-0000-0000</p>
+</div>
+<div class="hdr">
+  <a href="/" tabindex="2"><img src="img/logo.svg" class="hdr-logo"></a>
+  <span class="hdr-brand">RailGo</span>
+  <div class="hdr-nav">
+    <a tabindex="1" onclick="void 0" class="hdr-link" id="nav-item">My tickets</a>
+    <a tabindex="3" onclick="void 0" class="hdr-link" id="nav-item">Timetables</a>
+    <a href="#" class="hdr-icon" id="help"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"/></svg></a>
+    <button class="hdr-icon" tabindex="4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div>
+<div id="root"></div>
+<div class="ftr">
+  <div class="ftr-promo"><img src="img/train.svg" class="ftr-train"><div><div class="ftr-big">Travel more, pay less</div><div class="ftr-small">Get our weekly deals straight to your inbox.</div></div>
+    <input type="email" placeholder="Your e-mail" id="promo" class="ftr-input"><input type="checkbox" class="ftr-chk"><span class="ftr-small">I agree to receive offers</span>
+    <button class="ftr-go" id="promo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+  <h4 class="ftr-h">Popular routes</h4>
+  <table class="ftr-routes">
+    <tr><td><b>Route</b></td><td><b>Fastest</b></td><td><b>From</b></td></tr>
+    <tr><td>Warszawa – Kraków</td><td>2h 17m</td><td class="ftr-price">74 zł</td></tr>
+    <tr><td>Warszawa – Gdańsk</td><td>2h 39m</td><td class="ftr-price">69 zł</td></tr>
+    <tr><td>Kraków – Wrocław</td><td>3h 05m</td><td class="ftr-price">59 zł</td></tr>
+  </table>
+  <table class="ftr-layout" cellpadding="0" cellspacing="0"><tr>
+    <td><a onclick="void 0" class="ftr-a">About us</a><br><a onclick="void 0" class="ftr-a">Careers</a></td>
+    <td><a onclick="void 0" class="ftr-a">Help centre</a><br><a onclick="void 0" class="ftr-a">Refunds</a></td>
+    <td><img src="img/card-a.svg"> <img src="img/card-b.svg"> <img src="img/card-c.svg"></td>
+  </tr></table>
+  <div class="ftr-copy">© 2026 RailGo. All prices include VAT. Seat availability is subject to change.</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

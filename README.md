@@ -9,5 +9,6 @@ Test task: book a one-way ticket from Warszawa Centralna to Kraków Główny on 
 Live page: https://zenobia-gawlikowska.github.io/railgo-fixed/
 
 ## Versions
+- `/bad/` – the original, deliberately inaccessible page (the "before"). Built to be unusable for agents and screen reader users: it has a 90-second timer that reloads the page, controls that can't be used with a keyboard, and misleading labels. Live at https://zenobia-gawlikowska.github.io/railgo-fixed/bad/
 - `/` – the version first tested by hand (builder turn 3). Known issue: blocked with TalkBack on Android at the station picker.
 - `/v2/` – builder turn 4: plain native station dropdowns, and no field is announced as invalid before the user continues. Live at https://zenobia-gawlikowska.github.io/railgo-fixed/v2/

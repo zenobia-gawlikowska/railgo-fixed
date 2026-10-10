@@ -1,0 +1,26 @@
+html, body { margin: 0; padding: 0; background: #eef2f7; }
+body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #1d2433; -webkit-user-select: none; user-select: none; }
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+*:focus { outline: none; }
+
+.hdr { max-width: 760px; margin: 0 auto; padding: 18px 16px 0; display: flex; align-items: center; gap: 10px; }
+.hdr-logo { display: block; width: 38px; height: 38px; }
+.hdr-brand { font-weight: 800; font-size: 22px; letter-spacing: -.5px; }
+.hdr-nav { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+.hdr-link { font-size: 13px; color: #a9b0bd; cursor: pointer; }
+.hdr-icon { display: flex; background: none; border: 0; padding: 4px; color: #6b7488; cursor: pointer; }
+.ftr { max-width: 760px; margin: 0 auto; padding: 0 16px 40px; font-size: 13px; color: #b8bec9; }
+.ftr-promo { display: flex; align-items: center; gap: 14px; background: #fff; border-radius: 16px; padding: 14px 18px; flex-wrap: wrap; }
+.ftr-train { width: 120px; height: 64px; }
+.ftr-big { font-weight: 700; color: #1d2433; font-size: 15px; }
+.ftr-small { color: #c3c8d1; }
+.ftr-input { margin-left: auto; border: 1.5px solid #e1e6ee; border-radius: 10px; padding: 10px 12px; font-size: 14px; }
+.ftr-go { border: 0; background: #ffb3ad; color: #fff; border-radius: 10px; padding: 10px 12px; cursor: pointer; display: flex; }
+.ftr-h { color: #c0c5ce; margin: 22px 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+.ftr-routes { width: 100%; background: #fff; border-radius: 12px; padding: 8px; color: #b3b9c4; }
+.ftr-routes td { padding: 6px 10px; }
+.ftr-price { color: #ccd1d9; text-align: right; }
+.ftr-layout { width: 100%; margin-top: 18px; }
+.ftr-layout td { vertical-align: top; padding: 4px 0; }
+.ftr-a { color: #b8bec9; cursor: pointer; line-height: 1.9; }
+.ftr-copy { margin-top: 14px; color: #c9ced6; font-size: 11px; }
