@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where are you going? – Book train tickets – RailGo</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to booking</a>
+<header class="hdr" id="site-header">
+  <a href="/" class="hdr-home"><img src="img/logo.svg" class="hdr-logo" alt="RailGo home"></a>
+  <span class="hdr-brand">RailGo</span>
+  <nav class="hdr-nav" aria-label="Main">
+    <ul class="hdr-list">
+      <li><a href="/my-tickets" class="hdr-link">My tickets</a></li>
+      <li><a href="/timetables" class="hdr-link">Timetables</a></li>
+      <li><a href="/help" class="hdr-icon" aria-label="Help"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"/></svg></a></li>
+    </ul>
+    <div class="hdr-more">
+      <button type="button" class="hdr-icon" id="menu-btn" aria-label="Main menu" aria-expanded="false" aria-controls="menu"><svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <ul class="hdr-menu" id="menu" hidden>
+        <li><a href="/manage-booking">Manage a booking</a></li>
+        <li><a href="/travel-updates">Travel updates</a></li>
+        <li><a href="/railgo-points">RailGo points</a></li>
+        <li><a href="/contact">Contact us</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main class="app" id="main" tabindex="-1">
+  <h1 class="sr-only">Book a train ticket</h1>
+  <div class="top"><p class="tag">Fast. Simple. Booked.</p></div>
+  <div class="steps" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+  <div class="hold" id="hold">
+    <p class="hold-txt" id="hold-txt" role="timer" aria-live="off"></p>
+    <button type="button" class="hold-more" id="hold-more" hidden>Extend by 10 minutes</button>
+  </div>
+  <p class="hold-alert" id="hold-alert" role="alert"></p>
+  <p class="banner" id="banner"></p>
+
+  <form class="booking" id="booking" aria-label="Book a train ticket" novalidate>
+    <!-- step 1 -->
+    <section class="card" id="step-1" aria-labelledby="h-1">
+      <h2 id="h-1" tabindex="-1"><span class="sr-only">Step 1 of 5: </span>Where are you going?</h2>
+      <fieldset class="field" aria-describedby="trip-cap">
+        <legend class="lbl" id="trip-lbl">Trip</legend>
+        <div class="seg">
+          <button type="button" class="segI" id="trip-R" aria-label="Return" aria-pressed="true" data-icon="ret"></button>
+          <button type="button" class="segI" id="trip-O" aria-label="One-way" aria-pressed="false" data-icon="one"></button>
+        </div>
+        <span class="segCap" id="trip-cap"></span>
+      </fieldset>
+      <div class="row">
+        <div class="col">
+          <label class="lbl" for="from">From</label>
+          <select class="dd" id="from" aria-describedby="err-1"><option value="" disabled selected>Departure station</option></select>
+        </div>
+        <div class="col">
+          <label class="lbl" for="to">To</label>
+          <select class="dd" id="to" aria-describedby="err-1"><option value="" disabled selected>Arrival station</option></select>
+        </div>
+      </div>
+      <div class="lbl" id="date-lbl">Date of travel</div>
+      <table class="cal" id="cal" aria-labelledby="date-lbl cal-m" aria-describedby="cal-help">
+        <caption class="calHead">
+          <button type="button" class="calNav" id="cal-prev" aria-label="Previous month" data-icon="back"></button>
+          <span class="calM" id="cal-m" aria-live="polite"></span>
+          <button type="button" class="calNav" id="cal-next" aria-label="Next month" data-icon="right"></button>
+        </caption>
+        <thead><tr>
+          <th scope="col" abbr="Monday">Mo</th><th scope="col" abbr="Tuesday">Tu</th><th scope="col" abbr="Wednesday">We</th><th scope="col" abbr="Thursday">Th</th><th scope="col" abbr="Friday">Fr</th><th scope="col" abbr="Saturday">Sa</th><th scope="col" abbr="Sunday">Su</th>
+        </tr></thead>
+        <tbody id="cal-body"></tbody>
+      </table>
+      <p class="sr-only" id="cal-help">Arrow keys move between days, Page Up and Page Down change the month.</p>
+      <p class="chosen" id="date-chosen" aria-live="polite"></p>
+      <div class="actions">
+        <p class="hint" id="err-1" role="alert"></p>
+        <button type="button" class="next" data-next="1" data-icon="next"><span>Continue</span></button>
+      </div>
+    </section>
+
+    <!-- step 2 -->
+    <section class="card" id="step-2" aria-labelledby="h-2">
+      <button type="button" class="back" aria-label="Back" data-icon="back"></button>
+      <h2 id="h-2" tabindex="-1"><span class="sr-only">Step 2 of 5: </span>Choose your train</h2>
+      <div class="lbl" id="dep-lbl">Departures</div>
+      <div class="deps" id="deps" role="radiogroup" aria-labelledby="dep-lbl" aria-describedby="err-2"></div>
+      <div class="lbl" id="pax-lbl">Passengers</div>
+      <div class="pax" id="pax" role="group" aria-labelledby="pax-lbl" aria-describedby="pax-help"></div>
+      <p class="paxHelp" id="pax-help">Up to 6 passengers, including at least one adult or senior.</p>
+      <p class="sr-only" id="pax-status" role="status"></p>
+      <div class="actions">
+        <p class="hint" id="err-2" role="alert"></p>
+        <button type="button" class="next" data-next="2" data-icon="next"><span>Continue</span></button>
+      </div>
+    </section>
+
+    <!-- step 3 -->
+    <section class="card" id="step-3" aria-labelledby="h-3">
+      <button type="button" class="back" aria-label="Back" data-icon="back"></button>
+      <h2 id="h-3" tabindex="-1"><span class="sr-only">Step 3 of 5: </span>Pick your seats</h2>
+      <div class="lbl" id="car-lbl">Carriage</div>
+      <div class="cars" id="cars" role="tablist" aria-labelledby="car-lbl"></div>
+      <div class="seat-panel" id="seat-panel" role="tabpanel">
+        <p class="chosen" id="seat-info" aria-live="polite"></p>
+        <div class="train">
+          <div class="dir"><span aria-hidden="true">↑ </span>Direction of travel<span class="sr-only"> (row 1 is at the front; each row has a left window and left aisle seat, then the aisle, then a right aisle and right window seat)</span></div>
+          <div class="seats" id="seats" role="group" aria-describedby="err-3"></div>
+        </div>
+        <ul class="legend" aria-hidden="true">
+          <li class="lg"><span class="sw seat"></span>Available</li>
+          <li class="lg"><span class="sw seat win"></span>Window seat</li>
+          <li class="lg"><span class="sw seat taken"></span>Taken</li>
+          <li class="lg"><span class="sw seat seatSel"></span>Selected</li>
+        </ul>
+      </div>
+      <div class="actions">
+        <p class="hint" id="err-3" role="alert"></p>
+        <button type="button" class="next" data-next="3" data-icon="next"><span>Continue</span></button>
+      </div>
+    </section>
+
+    <!-- step 4 -->
+    <section class="card" id="step-4" aria-labelledby="h-4">
+      <button type="button" class="back" aria-label="Back" data-icon="back"></button>
+      <h2 id="h-4" tabindex="-1"><span class="sr-only">Step 4 of 5: </span>Extras &amp; passenger details</h2>
+      <div class="lbl">Add-ons</div>
+      <div class="xw" id="xw">
+        <button type="button" class="xBtn" id="x-btn" aria-expanded="false" aria-controls="x-menu" data-icon="chev"><span>Add extras</span></button>
+        <div class="xMenu" id="x-menu" role="group" aria-label="Extras" hidden></div>
+      </div>
+      <ul class="chips" id="chips" aria-label="Selected extras"></ul>
+      <label class="lbl" for="name">Lead passenger</label>
+      <input class="ce" id="name" type="text" autocomplete="name" spellcheck="false" placeholder="Full name as on ID" aria-describedby="err-4">
+      <div class="actions">
+        <p class="hint" id="err-4" role="alert"></p>
+        <button type="button" class="next" data-next="4" data-icon="next"><span>Continue</span></button>
+      </div>
+    </section>
+
+    <!-- step 5 -->
+    <section class="card" id="step-5" aria-labelledby="h-5">
+      <button type="button" class="back" aria-label="Back" data-icon="back"></button>
+      <h2 id="h-5" tabindex="-1"><span class="sr-only">Step 5 of 5: </span>Review &amp; pay</h2>
+      <dl class="rv" id="rv"></dl>
+      <label class="lbl" for="promo-code">Promo code (optional)</label>
+      <div class="promo">
+        <input class="promo-in" id="promo-code" type="text" autocomplete="off" placeholder="Promo code" aria-describedby="promo-msg">
+        <button type="button" class="btn btnS" id="promo-apply">Apply</button>
+      </div>
+      <p class="promo-msg" id="promo-msg" role="status"></p>
+      <button type="button" class="pay" id="pay"></button>
+    </section>
+
+    <!-- step 6 -->
+    <section class="card" id="step-6" aria-labelledby="h-6">
+      <div class="ok" data-icon="check"></div>
+      <h2 class="okT" id="h-6" tabindex="-1">Booking confirmed</h2>
+      <p class="okS">Show this code to the conductor.</p>
+      <p class="code-lbl" aria-hidden="true">Booking reference</p>
+      <p class="code" id="code"></p>
+    </section>
+  </form>
+</main>
+
+<footer class="ftr">
+  <section class="ftr-promo" aria-labelledby="news-h">
+    <img src="img/train.svg" class="ftr-train" alt="">
+    <div class="ftr-intro"><h2 class="ftr-big" id="news-h">Travel more, pay less</h2><p class="ftr-small">Get our weekly deals straight to your inbox.</p></div>
+    <form class="ftr-form" id="news" aria-labelledby="news-h" novalidate>
+      <div class="ftr-field">
+        <label class="ftr-lbl" for="news-email">E-mail address</label>
+        <input type="email" id="news-email" class="ftr-input" placeholder="Your e-mail" autocomplete="email" aria-describedby="news-msg">
+      </div>
+      <div class="ftr-ok"><input type="checkbox" class="chk" id="news-ok"><label for="news-ok" class="ftr-small">I agree to receive offers</label></div>
+      <button type="submit" class="ftr-go" aria-label="Subscribe" data-icon="next"></button>
+      <p class="ftr-msg" id="news-msg" role="status"></p>
+    </form>
+  </section>
+  <h2 class="ftr-h" id="routes-h">Popular routes</h2>
+  <table class="ftr-routes" aria-labelledby="routes-h">
+    <thead><tr><th scope="col">Route</th><th scope="col">Fastest</th><th scope="col" class="ftr-price">From</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Warszawa – Kraków</th><td>2h 17m</td><td class="ftr-price">74 zł</td></tr>
+      <tr><th scope="row">Warszawa – Gdańsk</th><td>2h 39m</td><td class="ftr-price">69 zł</td></tr>
+      <tr><th scope="row">Kraków – Wrocław</th><td>3h 05m</td><td class="ftr-price">59 zł</td></tr>
+    </tbody>
+  </table>
+  <div class="ftr-layout">
+    <nav aria-label="Footer">
+      <ul class="ftr-links">
+        <li><a href="/about" class="ftr-a">About us</a></li>
+        <li><a href="/careers" class="ftr-a">Careers</a></li>
+        <li><a href="/help" class="ftr-a">Help centre</a></li>
+        <li><a href="/refunds" class="ftr-a">Refunds</a></li>
+      </ul>
+    </nav>
+    <div class="ftr-pay">
+      <p class="sr-only" id="pay-h">Payment methods we accept</p>
+      <ul class="ftr-cards" aria-labelledby="pay-h">
+        <li><img src="img/card-a.svg" alt="Credit or debit card"></li>
+        <li><img src="img/card-b.svg" alt="Mastercard"></li>
+        <li><img src="img/card-c.svg" alt="Online bank transfer"></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ftr-copy">© 2026 RailGo. All prices include VAT. Seat availability is subject to change.</p>
+</footer>
+
+<dialog class="ck" id="cookie" aria-modal="true" aria-labelledby="ck-t" aria-describedby="ck-p" tabindex="-1">
+  <h2 class="ckT" id="ck-t">We value your privacy</h2>
+  <p class="ckP" id="ck-p">RailGo and our 214 partners use cookies to personalise offers, measure performance and improve your journey. You can change your choice at any time in Settings.</p>
+  <div class="ckB">
+    <button type="button" class="btn btnS" id="ck-nec">Necessary only</button>
+    <button type="button" class="btn btnP" id="ck-all">Accept all</button>
+  </div>
+</dialog>
+<script src="app.js"></script>
+</body>
+</html>
